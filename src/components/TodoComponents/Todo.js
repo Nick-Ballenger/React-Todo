@@ -1,9 +1,14 @@
-import React from 'react';
+import React from "react";
+import "./Todo.css";
+const Todo = props => {
+  return (
+    <div
+      className={`item${props.item.purchased ? " completed" : ""}`}
+      onClick={() => props.toggleItem(props.item.id)}
+    >
+      <button className="TaskButtons">{props.item.name}</button>
+    </div>
+  );
+};
 
-const TodoTask = props => {
-    return(
-        <p className={props.todoItem.completed ? 'completed todo-item' : "todo-item"} onClick={(click) => {props.toggleCompleted(click,props.todoItem.id)}}>{props.todoItem.task}</p>
-    )
-}
-
-export default TodoTask
+export default Todo;

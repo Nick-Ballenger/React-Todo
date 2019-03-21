@@ -1,0 +1,77 @@
+.AddButton{
+    background:orange;
+    padding:5px 40px;
+    border-radius:5px;
+    color:white;
+    font-size:20px;
+    width:200px;
+   
+}
+body{
+    background:wheat;
+}
+input{
+    padding:5px 20px;
+    background:yellow;
+    margin-top:15px;
+    margin-bottom:15px;
+    height:25px;
+    width:200px;
+}
+.TaskButtons{
+    padding:15px 50px;
+    width:200px;
+    background:lightseagreen;
+    margin-top:15px;
+    margin-bottom:15px;
+    
+    border-radius:5px;
+    font-size:15px;
+
+}
+h1{
+    background:white;
+    width:100%;
+    text-align:center;
+    border-bottom:1px solid black;
+    
+    
+    
+}
+.FinishButton{
+    background:orange;
+    padding:5px 40px;
+    border-radius:5px;
+    color:white;
+    font-size:20px;
+    margin-top:15px;
+    margin-bottom:15px;
+    /* margin-left:520px; */
+    border-radius:5px;
+    width:200px;
+}
+form{
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+}
+.App{
+    display:flex;
+    width:100%;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border:2px solid black;
+    border-radius:4px;
+    background:whitesmoke;
+    
+}
+html{
+    width:500px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    
+}

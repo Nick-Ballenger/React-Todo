@@ -1,98 +1,89 @@
+import React from "react";
 
-import React from 'react';
-import TodoList from './components/TodoComponents/TodoList';
-import TodoForm from './components/TodoComponents/TodoForm';
 
-import './components/TodoComponents/Todo.css';
+import "./components/TodoComponents/Todo.css";
+import TodoList from "./components/TodoComponents/TodoList";
+import TodoForm from "./components/TodoComponents/TodoForm";
+
+const Todos = [
+  {
+    name: "Organize Garage",
+    id: 123,
+    purchased: false
+  },
+  {
+    name: "Clean House",
+    id: 124,
+    purchased: false
+  }
+];
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      todoList: [
-        {
-          task: 'Organize Garage',
-          id: 1528817077286,
-          completed: false
-        },
-        {
-          task: 'Bake Cookies',
-          id: 1528817084358,
-          completed: false
-        }
-      ],
-      taskText: '',
-    }
+      Todos
+    };
   }
 
-  handleChange = change => {
+  toggleItem = id => {
     this.setState({
-      taskText: change.target.value
-    })
-  }
-
-  handleSubmit = submit=> {
-    submit.preventDefault();
-    if(this.state.taskText.length>1){
-      this.setState({
-        todoList: [
-          ...this.state.todoList,
-          {task: this.state.taskText, completed: false, id: Date.now()}
-        ],
-        taskText: ''
-      })
-    }
-    
-  }
-
-  toggleCompleted = (id) => {
-    // e.target.classList.toggle('completed');
-    this.setState({
-      todoList: this.state.todoList.map(todo => {
-        if(todo.id === id){
+      Todos: this.state.Todos.map(item => {
+        if (item.id === id) {
           return {
-            ...todo,
-            completed: !todo.completed
-          }
-        }else {
-          return todo
+            ...item,
+           
+            purchased: !item.completed
+          };
         }
+        return item;
       })
-    })
-  }
+    });
+    // loop over groceries
+    // find grocery by given id
+    // change flag to true
+    // return updated list to state.
+  };
 
-  clearCompleted = () => {
-    this.setState({
-      todoList: this.state.todoList.filter(todo => {
-        if(!todo.completed){
-          return todo
-        }
-      })
-    })
-  }
+  addItem = todo => {
+    const copiedTodos = this.state.Todos.slice();
+    const newItem = {
+      name: todo,
+      id: Date.now(),
+      purchased: false
+    };
+    copiedTodos.push(newItem);
+    // BUILD OUR ITEM OBJECT
+    this.setState({ Todos: copiedTodos });
+  };
 
-  
+  clearTodo = () => {
+    this.setState(eraserState => {
+      return {
+        Todos: eraserState.Todos.filter(todoItem => {
+          return !todoItem.purchased;
+        })
+      };
+    });
+  };
 
   render() {
+    // when state is updated (Via setState) react calls render again
     return (
-      <div>
-      
-      <div className="app">
-        <h1 className="header">Todo List</h1>
-        {/* <TodoList 
-        todoList={this.state.todoList}
-        toggleCompleted={this.toggleCompleted}
-        /> */}
-        <TodoForm 
-        handleChange={this.handleChange} 
-        taskText={this.state.taskText}
-        handleSubmit={this.handleSubmit}
-        clearCompleted={this.clearCompleted}
+      <div className="App">
+        <div className="header">
+          <h1>Todo List</h1>
+          <TodoForm addItem={this.addItem} />
+        </div>
+        <TodoList
+          Todos={this.state.Todos}
+          toggleItem={this.toggleItem}
         />
-      </div>
+        <button className ="FinishButton"onClick={this.clearTodo}>Finished</button>
       </div>
     );
   }
 }
 
-export default App;
+const rootElement = document.getElementById("root");
+export default App
