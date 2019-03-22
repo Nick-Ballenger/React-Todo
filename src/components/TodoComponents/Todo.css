@@ -66,12 +66,14 @@ form{
     border:2px solid black;
     border-radius:4px;
     background:whitesmoke;
-    
+    height:100%;
 }
 html{
+    min-width: 515px;
     width:500px;
     display:flex;
     align-items:center;
     justify-content:center;
+    
     
 }

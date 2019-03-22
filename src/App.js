@@ -9,12 +9,12 @@ const Todos = [
   {
     name: "Organize Garage",
     id: 123,
-    purchased: false
+    completed: false
   },
   {
     name: "Clean House",
     id: 124,
-    purchased: false
+    completed: false
   }
 ];
 
@@ -33,16 +33,13 @@ class App extends React.Component {
           return {
             ...item,
            
-            purchased: !item.completed
+            completed: !item.completed
           };
         }
         return item;
       })
     });
-    // loop over groceries
-    // find grocery by given id
-    // change flag to true
-    // return updated list to state.
+    
   };
 
   addItem = todo => {
@@ -50,7 +47,7 @@ class App extends React.Component {
     const newItem = {
       name: todo,
       id: Date.now(),
-      purchased: false
+      completed: false
     };
     copiedTodos.push(newItem);
     // BUILD OUR ITEM OBJECT
@@ -61,7 +58,7 @@ class App extends React.Component {
     this.setState(eraserState => {
       return {
         Todos: eraserState.Todos.filter(todoItem => {
-          return !todoItem.purchased;
+          return !todoItem.completed;
         })
       };
     });
